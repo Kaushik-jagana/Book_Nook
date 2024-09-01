@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
+
 
 const BookList = () => {
     const [books, setBooks] = useState([]);
@@ -24,6 +26,7 @@ const BookList = () => {
             <select onChange={(e) => setGenre(e.target.value)}>
                 <option value="">All Genres</option>
                 <option value="Fiction">Fiction</option>
+                <option value="Drama">Fiction</option>
                 <option value="Non-Fiction">Non-Fiction</option>
                 <option value="Sci-Fi">Sci-Fi</option>
                 <option value="Fantasy">Fantasy</option>
@@ -35,6 +38,9 @@ const BookList = () => {
                         <p>{book.author}</p>
                         <p>Genre: {book.genre}</p>
                         <p>Price: ${book.price}</p>
+                        <Link to={`/book/${book.isbn}`}>
+                            <button>View Details</button>
+                        </Link>
                     </div>
                 ))}
             </div>

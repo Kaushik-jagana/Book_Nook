@@ -1,10 +1,12 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState , useContext} from 'react';
 import axios from 'axios';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
+import { CartContext } from '../context/CartContext';
 
 const BookDetail = () => {
   const { isbn } = useParams();
   const [book, setBook] = useState(null);
+  const { addToCart } = useContext(CartContext);
 
   useEffect(() => {
     axios.get(`http://localhost:3000/api/books/${isbn}`)
@@ -21,7 +23,10 @@ const BookDetail = () => {
           <p>Genre: {book.genre}</p>
           <p>Price: ${book.price}</p>
           <p>Quantity in Stock: {book.quantity}</p>
-          <button>Add to Cart</button>
+          <button onClick={() => addToCart(book)}>Add to Cart</button>
+          <Link to="/cart">
+            <button>View Cart</button>
+          </Link>
         </div>
       ) : (
         <p>Loading...</p>

@@ -2,23 +2,29 @@ import React, { useContext } from 'react';
 import { CartContext } from '../context/CartContext';
 
 const Checkout = () => {
-  const { cartItems } = useContext(CartContext);
+  const { cartItems,purchaseItems } = useContext(CartContext);
 
-  const handleCheckout = () => {
-    // Simulate checkout process
-    alert('Checkout successful!');
+  const handlePurchase = () => {
+    purchaseItems();
   };
 
   return (
     <div>
       <h1>Checkout</h1>
-      {cartItems.map((item, index) => (
-        <div key={index}>
-          <h2>{item.title}</h2>
-          <p>Price: ${item.price}</p>
+      {cartItems.length > 0 ? (
+        <div>
+          {cartItems.map((item, index) => (
+            <div key={index}>
+              <h2>{item.title}</h2>
+              <p>Author: {item.author}</p>
+              <p>Price: ${item.price}</p>
+            </div>
+          ))}
+          <button onClick={handlePurchase}>Complete Purchase</button>
         </div>
-      ))}
-      <button onClick={handleCheckout}>Complete Purchase</button>
+      ) : (
+        <p>Your cart is empty</p>
+      )}
     </div>
   );
 };
