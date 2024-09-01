@@ -5,7 +5,7 @@ const Home = () => {
   const [books, setBooks] = useState([]);
 
   useEffect(() => {
-    axios.get('http://localhost:3000/api/v1/books')
+    axios.get('http://localhost:3000/api/books')
       .then(response => setBooks(response.data))
       .catch(error => console.error('Error fetching books:', error));
   }, []);

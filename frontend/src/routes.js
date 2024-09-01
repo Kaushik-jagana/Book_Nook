@@ -1,23 +1,25 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Home from './pages/Home';
 import BookList from './pages/BookList';
 import BookDetail from './pages/BookDetail';
 import Cart from './pages/Cart';
 import Admin from './pages/Admin';
 import Login from './pages/Login';
+import Checkout from './pages/Checkout';
 
-const Routes = () => (
+const AppRoutes = () => (
   <Router>
-    <Switch>
-      <Route exact path="/" component={Home} />
-      <Route path="/books" component={BookList} />
-      <Route path="/book/:isbn" component={BookDetail} />
-      <Route path="/cart" component={Cart} />
-      <Route path="/admin" component={Admin} />
-      <Route path="/login" component={Login} />
-    </Switch>
+    <Routes>
+      <Route path="/" element={<Home />} />
+      <Route path="/books" element={<BookList />} />
+      <Route path="/book/:isbn" element={<BookDetail />} />
+      <Route path="/cart" element={<Cart />} />
+      <Route path="/admin" element={<Admin />} />
+      <Route path="/login" element={<Login />} />
+      <Route path="/checkout" element={<Checkout />} />
+    </Routes>
   </Router>
 );
 
-export default Routes;
+export default AppRoutes;

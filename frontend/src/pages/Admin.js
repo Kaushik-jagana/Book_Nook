@@ -8,7 +8,7 @@ const Admin = () => {
   });
 
   useEffect(() => {
-    axios.get('http://localhost:3000/api/v1/books', {
+    axios.get('http://localhost:3000/api/books', {
       headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` }
     })
     .then(response => setBooks(response.data))
@@ -20,7 +20,7 @@ const Admin = () => {
   };
 
   const handleAddBook = () => {
-    axios.post('http://localhost:3000/api/v1/books/add', newBook, {
+    axios.post('http://localhost:3000/api/books/add', newBook, {
       headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` }
     })
     .then(response => {

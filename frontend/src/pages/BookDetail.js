@@ -7,7 +7,7 @@ const BookDetail = () => {
   const [book, setBook] = useState(null);
 
   useEffect(() => {
-    axios.get(`http://localhost:3000/api/v1/books/${isbn}`)
+    axios.get(`http://localhost:3000/api/books/${isbn}`)
       .then(response => setBook(response.data))
       .catch(error => console.error('Error fetching book details:', error));
   }, [isbn]);

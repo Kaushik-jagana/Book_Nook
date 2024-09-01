@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const logAction = require('../middleware/logger');
+const db = require('../config/db');  // Import the db connection
 
 const { createBook, getAllBooks, getBookByISBN } = require('../models/book');
 
@@ -16,16 +17,16 @@ router.post('/add', (req, res) => {
 
 // Route to get all books
 router.get('/', (req, res) => {
-    const limit = parseInt(req.query.limit) || 10;
-    const page = parseInt(req.query.page) || 1;
-    const offset = (page - 1) * limit;
-  
-    const query = 'SELECT * FROM books LIMIT ? OFFSET ?';
-    db.query(query, [limit, offset], (err, results) => {
-      if (err) return res.status(500).json({ error: 'Failed to retrieve books' });
-      res.status(200).json(results);
-    });
+  const limit = parseInt(req.query.limit) || 10;
+  const page = parseInt(req.query.page) || 1;
+  const offset = (page - 1) * limit;
+
+  const query = 'SELECT * FROM books LIMIT ? OFFSET ?';
+  db.query(query, [limit, offset], (err, results) => {
+    if (err) return res.status(500).json({ error: 'Failed to retrieve books' });
+    res.status(200).json(results);
   });
+});
 
 // Route to get a book by ISBN
 router.get('/:isbn', (req, res) => {

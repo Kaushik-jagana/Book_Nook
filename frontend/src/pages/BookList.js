@@ -7,13 +7,13 @@ const BookList = () => {
     const [page, setPage] = useState(1);
 
     useEffect(() => {
-        axios.get(`http://localhost:3000/api/v1/books?genre=${genre}`)
+        axios.get(`http://localhost:3000/api/books?genre=${genre}`)
             .then(response => setBooks(response.data))
             .catch(error => console.error('Error fetching books:', error));
     }, [genre]);
 
     useEffect(() => {
-        axios.get(`http://localhost:3000/api/v1/books?page=${page}&limit=10`)
+        axios.get(`http://localhost:3000/api/books?page=${page}&limit=10`)
             .then(response => setBooks(response.data))
             .catch(error => console.error('Error fetching books:', error));
     }, [page]);
