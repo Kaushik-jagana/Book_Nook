@@ -20,9 +20,22 @@ router.get('/', (req, res) => {
   const limit = parseInt(req.query.limit) || 10;
   const page = parseInt(req.query.page) || 1;
   const offset = (page - 1) * limit;
+  const genre = req.query.genre || null;
 
-  const query = 'SELECT * FROM books LIMIT ? OFFSET ?';
-  db.query(query, [limit, offset], (err, results) => {
+  let query = 'SELECT * FROM books';
+  const params = [];
+
+  // If a genre is provided, add it to the query
+  if (genre) {
+    query += ' WHERE genre = ?';
+    params.push(genre);
+  }
+
+  // Add pagination to the query
+  query += ' LIMIT ? OFFSET ?';
+  params.push(limit, offset);
+
+  db.query(query, params, (err, results) => {
     if (err) return res.status(500).json({ error: 'Failed to retrieve books' });
     res.status(200).json(results);
   });

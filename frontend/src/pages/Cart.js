@@ -22,7 +22,7 @@ const Cart = () => {
             )}
             {cartItems.length > 0 && (
                 <Link to="/checkout">
-                    <button>Proceed to Checkout</button>
+                    <button>Proceed to Buy</button>
                 </Link>
             )}
         </div>

@@ -8,6 +8,7 @@ import Admin from './pages/Admin';
 import Login from './pages/Login';
 import Checkout from './pages/Checkout';
 import Navbar from './components/Navbar';
+import Register from './pages/Register';
 
 const AdminRoute = ({ component: Component, ...rest }) => {
     const token = localStorage.getItem('token');
@@ -23,19 +24,20 @@ const AdminRoute = ({ component: Component, ...rest }) => {
 };
 
 const AppRoutes = () => (
-    <Router>
+    <div>
+        <Navbar />
         <Routes>
-            <Navbar />
             <Route path="/" element={<Home />} />
             <Route path="/books" element={<BookList />} />
             <Route path="/book/:isbn" element={<BookDetail />} />
             <Route path="/cart" element={<Cart />} />
             <Route path="/admin" element={<Admin />} />
             <Route path="/login" element={<Login />} />
+            <Route path="/register" element={<Register />} />
             <Route path="/admin" element={<AdminRoute component={Admin} />} />
             <Route path="/checkout" element={<Checkout />} />
         </Routes>
-    </Router>
+    </div>
 );
 
 export default AppRoutes;

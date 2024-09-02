@@ -26,8 +26,8 @@ const BookList = () => {
             <select onChange={(e) => setGenre(e.target.value)}>
                 <option value="">All Genres</option>
                 <option value="Fiction">Fiction</option>
-                <option value="Drama">Fiction</option>
-                <option value="Non-Fiction">Non-Fiction</option>
+                <option value="Drama">Drama</option>
+                <option value="Self-help">Self-help</option>
                 <option value="Sci-Fi">Sci-Fi</option>
                 <option value="Fantasy">Fantasy</option>
             </select>
